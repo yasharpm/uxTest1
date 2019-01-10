@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:background="@color/item_special_background">
+
+    <com.yashoid.uxapp.TextView
+        android:id="@+id/button_invite"
+        style="@style/ItemButton"
+        android:layout_width="@dimen/item_button_width"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/text"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="@dimen/item_margin_horizontal"
+
+        android:text="دعوت دوستان"/>
+
+    <com.yashoid.uxapp.TextView
+        android:id="@+id/text"
+        style="@style/ItemText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/button_invite"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/item_margin_vertical"
+        android:layout_marginRight="@dimen/item_margin_horizontal"
+        android:layout_marginLeft="16dp"
+
+        android:text="تا کنون ۵۶ امتیاز از طریق ۵ دوستی که دعوت کرده اید به دست آورده اید."/>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text"
+        android:layout_marginTop="@dimen/item_margin_vertical"
+
+        android:background="@color/item_divider"/>
+
+
+
+</android.support.constraint.ConstraintLayout>

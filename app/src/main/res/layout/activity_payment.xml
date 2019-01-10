@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.yashoid.uxapp.TextView
+        android:id="@+id/text_title"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/toolbar_height"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        android:background="@color/windowBackground"
+        android:elevation="@dimen/elevation"
+        android:textColor="@color/colorPrimaryDark"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:text="شارژ سیم کارت"/>
+
+    <com.yashoid.uxapp.TextView
+        android:id="@+id/text_details"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/text_title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:paddingLeft="@dimen/service_padding_horizontal"
+        android:paddingRight="@dimen/service_padding_horizontal"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+
+        android:textSize="16sp"
+        android:textColor="@color/windowBackground"
+        android:background="@color/colorPrimaryDark"
+        android:elevation="2dp"/>
+
+    <com.yashoid.uxapp.Input
+        android:id="@+id/input_cardnumber"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_details"
+        android:layout_marginTop="@dimen/service_padding_vertical"
+        android:layout_marginLeft="@dimen/service_padding_horizontal"
+        android:layout_marginRight="@dimen/service_padding_horizontal"
+
+        android:inputType="number"
+        android:title="شماره کارت"
+        app:options="@array/options_type"
+        app:typeIndex="0"/>
+
+    <com.yashoid.uxapp.Input
+        android:id="@+id/input_pass"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_cardnumber"
+        android:layout_marginTop="@dimen/service_input_spacing"
+        android:layout_marginLeft="@dimen/service_padding_horizontal"
+        android:layout_marginRight="@dimen/service_padding_horizontal"
+
+        android:inputType="numberPassword"
+        android:title="رمز دوم"
+        app:options="@array/options_type"
+        app:typeIndex="0"/>
+
+    <com.yashoid.uxapp.Input
+        android:id="@+id/input_cvv2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_pass"
+        android:layout_marginTop="@dimen/service_input_spacing"
+        android:layout_marginLeft="@dimen/service_padding_horizontal"
+        android:layout_marginRight="@dimen/service_padding_horizontal"
+
+        android:inputType="numberPassword"
+        android:title="CVV2"
+        app:options="@array/options_type"
+        app:typeIndex="0"/>
+
+    <com.yashoid.uxapp.ExpDateInput
+        android:id="@+id/input_expdate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_cvv2"
+        android:layout_marginTop="@dimen/service_input_spacing"
+        android:layout_marginLeft="@dimen/service_padding_horizontal"
+        android:layout_marginRight="@dimen/service_padding_horizontal"
+
+        android:inputType="number"
+        android:title="تاریخ انقضا"
+        app:options="@array/options_type"
+        app:typeIndex="0"/>
+
+    <com.yashoid.uxapp.InputBoard
+        android:id="@+id/inputboard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        android:elevation="@dimen/elevation"></com.yashoid.uxapp.InputBoard>
+
+    <FrameLayout
+        android:id="@+id/container_done"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/inputboard"
+
+        android:background="@color/windowBackground"
+        android:elevation="@dimen/elevation">
+
+        <com.yashoid.uxapp.TextView
+            android:id="@+id/button_done"
+            style="@style/ItemButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/service_padding_horizontal"
+            android:layout_marginRight="@dimen/service_padding_horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:textSize="16sp"
+            android:text="پرداخت"/>
+
+    </FrameLayout>
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#8d8d8d</color>
+    <color name="colorPrimaryDark">#555555</color>
+    <color name="colorPrimaryLight">#ffdfdfdf</color>
+    <color name="colorAccent">#111111</color>
+
+    <color name="windowBackground">#f2f2f2</color>
+
+    <color name="tab_selected">@color/colorPrimaryDark</color>
+    <color name="tab_unselected">@color/colorPrimary</color>
+
+    <color name="item_textcolor">@color/colorAccent</color>
+    <color name="item_button_background">@color/colorPrimaryDark</color>
+    <color name="item_button_textcolor">@color/windowBackground</color>
+    <color name="item_special_background">@color/colorPrimaryLight</color>
+    <color name="item_divider">@color/colorPrimary</color>
+
+</resources>

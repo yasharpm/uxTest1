@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/image_icon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/text_name"
+        app:layout_constraintVertical_chainStyle="spread_inside"
+
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/tab_home"/>
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/text_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:fontFamily="@font/iran_sans_bold"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="12sp"
+        android:text="خانه"/>
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <include
+        android:id="@+id/button_messages"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_default="spread"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/button_reports"
+
+        layout="@layout/item_tab"/>
+
+    <include
+        android:id="@+id/button_reports"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_default="spread"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/button_messages"
+        app:layout_constraintRight_toLeftOf="@+id/button_rapid_transactions"
+
+        layout="@layout/item_tab"/>
+
+    <include
+        android:id="@+id/button_rapid_transactions"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_default="spread"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/button_reports"
+        app:layout_constraintRight_toLeftOf="@+id/button_campaign"
+
+        layout="@layout/item_tab"/>
+
+    <include
+        android:id="@+id/button_campaign"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_default="spread"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/button_rapid_transactions"
+        app:layout_constraintRight_toLeftOf="@+id/button_home"
+
+        layout="@layout/item_tab"/>
+
+    <include
+        android:id="@+id/button_home"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_default="spread"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/button_campaign"
+        app:layout_constraintRight_toRightOf="parent"
+
+        layout="@layout/item_tab"/>
+
+</merge>

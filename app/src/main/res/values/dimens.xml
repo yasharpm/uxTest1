@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="elevation">4dp</dimen>
+    <dimen name="margin">16dp</dimen>
+
+    <dimen name="toolbar_height">48dp</dimen>
+
+    <dimen name="tabbar_padding_top">5dp</dimen>
+    <dimen name="tabbar_padding_bottom">3dp</dimen>
+
+    <dimen name="tab_size">24dp</dimen>
+
+    <dimen name="item_margin_horizontal">@dimen/margin</dimen>
+    <dimen name="item_margin_vertical">@dimen/margin</dimen>
+    <dimen name="item_button_width">96dp</dimen>
+    <dimen name="item_button_corners">8dp</dimen>
+    <dimen name="item_button_textsize">13sp</dimen>
+    <dimen name="item_textsize">14sp</dimen>
+    <dimen name="item_title_textsize">15sp</dimen>
+
+    <dimen name="item_service_width">107dp</dimen>
+    <dimen name="item_service_height">140dp</dimen>
+    <dimen name="item_service_margin">5dp</dimen>
+    <dimen name="item_service_size_2x">280dp</dimen>
+
+    <dimen name="rapidtransaction_camera_margin">8dp</dimen>
+    
+    <dimen name="service_padding_horizontal">20dp</dimen>
+    <dimen name="service_padding_horizontal_half">10dp</dimen>
+    <dimen name="service_padding_vertical">16dp</dimen>
+    <dimen name="service_input_spacing">8dp</dimen>
+
+    <dimen name="keyboard_height">240dp</dimen>
+
+</resources>

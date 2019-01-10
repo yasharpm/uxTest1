@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CircleMenu">
+        <attr name="radiusRatio" format="float"/>
+        <attr name="drawCircle" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="ServiceView">
+        <attr name="name" format="string"/>
+        <attr name="color" format="color"/>
+        <attr name="isRed" format="boolean"/>
+    </declare-styleable>
+
+</resources>

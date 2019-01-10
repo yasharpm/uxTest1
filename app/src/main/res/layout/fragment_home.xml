@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <HorizontalScrollView
+        android:id="@+id/container_services"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/item_service_size_2x"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="4dp"
+
+        android:layoutDirection="rtl"
+        android:scrollbars="none"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:clipChildren="false"
+        android:clipToPadding="false">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/item_service_size_2x"
+            android:orientation="horizontal">
+            
+            <LinearLayout
+                android:layout_width="@dimen/item_service_width"
+                android:layout_height="@dimen/item_service_size_2x"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/service_1"
+                    android:layout_width="@dimen/item_service_width"
+                    android:layout_height="@dimen/item_service_height"
+                    layout="@layout/item_service"/>
+
+                <include
+                    android:id="@+id/service_2"
+                    android:layout_width="@dimen/item_service_width"
+                    android:layout_height="@dimen/item_service_height"
+                    layout="@layout/item_service"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/item_service_width"
+                android:layout_height="@dimen/item_service_size_2x"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/service_3"
+                    android:layout_width="@dimen/item_service_width"
+                    android:layout_height="@dimen/item_service_height"
+                    layout="@layout/item_service"/>
+
+                <include
+                    android:id="@+id/service_4"
+                    android:layout_width="@dimen/item_service_width"
+                    android:layout_height="@dimen/item_service_height"
+                    layout="@layout/item_service"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/item_service_width"
+                android:layout_height="@dimen/item_service_size_2x"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/service_5"
+                    android:layout_width="@dimen/item_service_width"
+                    android:layout_height="@dimen/item_service_height"
+                    layout="@layout/item_service"/>
+
+                <include
+                    android:id="@+id/service_6"
+                    android:layout_width="@dimen/item_service_width"
+                    android:layout_height="@dimen/item_service_height"
+                    layout="@layout/item_service"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/item_service_width"
+                android:layout_height="@dimen/item_service_size_2x"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/service_7"
+                    android:layout_width="@dimen/item_service_width"
+                    android:layout_height="@dimen/item_service_height"
+                    layout="@layout/item_service"/>
+
+                <include
+                    android:id="@+id/service_8"
+                    android:layout_width="@dimen/item_service_width"
+                    android:layout_height="@dimen/item_service_height"
+                    layout="@layout/item_service"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/item_service_width"
+                android:layout_height="@dimen/item_service_size_2x"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/service_9"
+                    android:layout_width="@dimen/item_service_width"
+                    android:layout_height="@dimen/item_service_height"
+                    layout="@layout/item_service"/>
+
+                <include
+                    android:id="@+id/service_10"
+                    android:layout_width="@dimen/item_service_width"
+                    android:layout_height="@dimen/item_service_height"
+                    layout="@layout/item_service"/>
+
+            </LinearLayout>
+            
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/box_points"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/box_wallet"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+
+        app:cardCornerRadius="8dp"
+        app:cardBackgroundColor="#fff">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.yashoid.uxapp.TextView
+                android:id="@+id/text_key"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/text_value"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                android:textSize="12sp"
+                android:textColor="@color/colorPrimary"
+                android:text="امتیاز"/>
+
+            <com.yashoid.uxapp.TextView
+                android:id="@+id/text_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toRightOf="@+id/text_key"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginLeft="4dp"
+                android:textSize="14sp"
+                android:textColor="@color/colorPrimary"
+                android:text="۱۳۴۵۵"/>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/box_wallet"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/box_points"
+        app:layout_constraintTop_toTopOf="@+id/box_points"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+
+        app:cardCornerRadius="8dp"
+        app:cardBackgroundColor="#fff">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.yashoid.uxapp.TextView
+                android:id="@+id/text_key"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/text_value"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                android:textSize="12sp"
+                android:textColor="@color/colorPrimary"
+                android:text="ریال اعتبار کیف پول"/>
+
+            <com.yashoid.uxapp.TextView
+                android:id="@+id/text_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toRightOf="@+id/text_key"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginLeft="4dp"
+                android:textSize="14sp"
+                android:textColor="@color/colorPrimary"
+                android:text="۱،۳۴۵،۰۰۰"/>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/box_chance500"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        app:layout_constraintLeft_toLeftOf="@+id/box_points"
+        app:layout_constraintRight_toRightOf="@+id/box_points"
+        app:layout_constraintTop_toBottomOf="@+id/box_points"
+        android:layout_marginTop="8dp"
+
+        app:cardCornerRadius="8dp"
+        app:cardBackgroundColor="#fff">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.yashoid.uxapp.TextView
+                android:id="@+id/text_key"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/text_value"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                android:textSize="12sp"
+                android:textColor="@color/colorPrimary"
+                android:text="شانس قرعه کشی\nجایزه ۵۰۰ میلیونی"/>
+
+            <com.yashoid.uxapp.TextView
+                android:id="@+id/text_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toRightOf="@+id/text_key"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginLeft="8dp"
+                android:textSize="14sp"
+                android:textColor="@color/colorPrimary"
+                android:text="۱۵۸۵۸"/>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/box_chance7"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        app:layout_constraintLeft_toLeftOf="@+id/box_wallet"
+        app:layout_constraintRight_toRightOf="@+id/box_wallet"
+        app:layout_constraintTop_toTopOf="@+id/box_chance500"
+
+        app:cardCornerRadius="8dp"
+        app:cardBackgroundColor="#fff">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.yashoid.uxapp.TextView
+                android:id="@+id/text_key"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/text_value"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                android:textSize="12sp"
+                android:textColor="@color/colorPrimary"
+                android:text="شانس قرعه کشی\nجایزه هفتگی"/>
+
+            <com.yashoid.uxapp.TextView
+                android:id="@+id/text_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toRightOf="@+id/text_key"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginLeft="8dp"
+                android:textSize="14sp"
+                android:textColor="@color/colorPrimary"
+                android:text="۱۵۴"/>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintLeft_toLeftOf="@+id/box_chance500"
+        app:layout_constraintRight_toRightOf="@+id/box_chance7"
+        app:layout_constraintTop_toBottomOf="@+id/box_chance500"
+        app:layout_constraintBottom_toTopOf="@+id/container_services"
+        app:layout_constraintVertical_bias="1">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            android:src="@drawable/img_campaign"
+            android:adjustViewBounds="true"
+        android:scaleType="fitXY"/>
+
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_margin="8dp"
+
+            app:srcCompat="@drawable/ic_next"/>
+
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_margin="8dp"
+
+            android:rotation="180"
+            app:srcCompat="@drawable/ic_next"/>
+
+        <com.yashoid.uxapp.TextView
+            android:id="@+id/text_line1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/text_line2"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintHorizontal_bias="0.2"
+
+            android:textSize="24sp"
+            android:textColor="@color/windowBackground"
+            android:text="خرید بلیط قطار"/>
+
+        <com.yashoid.uxapp.TextView
+            android:id="@+id/text_line2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="@+id/text_line1"
+            app:layout_constraintTop_toBottomOf="@+id/text_line1"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            android:textSize="17sp"
+            android:textColor="@color/windowBackground"
+            android:text="از هف هشتاد"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>

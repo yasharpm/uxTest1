@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="Input">
+        <attr name="android:title"/>
+        <attr name="android:inputType"/>
+        <attr name="options" format="reference"/>
+        <attr name="typeIndex" format="integer"/>
+    </declare-styleable>
+
+</resources>
