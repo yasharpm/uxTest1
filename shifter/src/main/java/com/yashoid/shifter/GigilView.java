@@ -3,11 +3,11 @@ package com.yashoid.shifter;
 import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -27,6 +27,8 @@ public class GigilView extends View implements GigilDrawable.OnGigilMovedListene
     private GigilDrawable.OnGigilMovedListener mOnGigilMovedListener = null;
 
     private GestureDetector mGestureDetector;
+
+    private boolean mRtl;
 
     private GigilDrawable mGigil;
 
@@ -54,7 +56,15 @@ public class GigilView extends View implements GigilDrawable.OnGigilMovedListene
     }
 
     private void initialize(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        mGigil = new GigilDrawable(context);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.GigilView, defStyleAttr, 0);
+
+        mRtl = a.getBoolean(R.styleable.GigilView_rtl, false);
+        int color = a.getColor(R.styleable.GigilView_color, 0xff002b71);
+        int iconResId = a.getResourceId(R.styleable.GigilView_icon, R.drawable.ic_gigil);
+
+        a.recycle();
+
+        mGigil = new GigilDrawable(context, mRtl, color, iconResId);
         mGigil.setOnGigilMovedListener(this);
 
         setBackground(mGigil);
@@ -103,17 +113,19 @@ public class GigilView extends View implements GigilDrawable.OnGigilMovedListene
 
     @Override
     public void draw(Canvas canvas) {
-        canvas.save();
-        canvas.clipRect(mGigil.getLeft(), 0, getWidth(), getHeight());
-        canvas.drawText(TEXT, mTextLeft, mTextY, mTextPaint);
-        mSwipe.draw(canvas);
-        canvas.restore();
+        if (!mRtl) {
+            canvas.save();
+            canvas.clipRect(mGigil.getPosition(), 0, getWidth(), getHeight());
+            canvas.drawText(TEXT, mTextLeft, mTextY, mTextPaint);
+            mSwipe.draw(canvas);
+            canvas.restore();
+        }
 
         super.draw(canvas);
     }
 
-    public int getGigilLeft() {
-        return mGigil.getLeft();
+    public int getGigilPosition() {
+        return mGigil.getPosition();
     }
 
     public void setOnGigilMovedListener(GigilDrawable.OnGigilMovedListener listener) {
@@ -125,10 +137,18 @@ public class GigilView extends View implements GigilDrawable.OnGigilMovedListene
     private boolean mFirstZero = false;
 
     @Override
-    public void onGigilMoved(int left) {
+    public void onGigilMoved(int position) {
+        if (mOnGigilMovedListener != null) {
+            mOnGigilMovedListener.onGigilMoved(position);
+        }
+
+        if (mRtl) {
+            return;
+        }
+
         boolean startAlphaAnimator = false;
 
-        if (left == 0) {
+        if (position == 0) {
             if (mFirstZero || mAlphaDestination != 0) {
                 mFirstZero = false;
             }
@@ -204,23 +224,32 @@ public class GigilView extends View implements GigilDrawable.OnGigilMovedListene
             });
             mAlphaAnimator.start();
         }
-
-        if (mOnGigilMovedListener != null) {
-            mOnGigilMovedListener.onGigilMoved(left);
-        }
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         boolean result = mGestureDetector.onTouchEvent(event);
 
-        if (!mIsFlinging) {
+        if (mClickOnSwipe && event.getAction() != MotionEvent.ACTION_DOWN && event.getAction() != MotionEvent.ACTION_MOVE) {
+            mClickOnSwipe = false;
+        }
+        else if (!mIsFlinging) {
             if (event.getAction() != MotionEvent.ACTION_DOWN && event.getAction() != MotionEvent.ACTION_MOVE) {
-                if (mGigil.getLeft() + mGigil.getBump() < getWidth() / 2) {
-                    close();
+                if (mRtl) {
+                    if (mGigil.getPosition() - mGigil.getBump() < getWidth() / 2) {
+                        open();
+                    }
+                    else {
+                        close();
+                    }
                 }
                 else {
-                    open();
+                    if (mGigil.getPosition() + mGigil.getBump() < getWidth() / 2) {
+                        close();
+                    }
+                    else {
+                        open();
+                    }
                 }
             }
         }
@@ -229,30 +258,101 @@ public class GigilView extends View implements GigilDrawable.OnGigilMovedListene
     }
 
     public boolean isOpenOrOpening() {
-        return mGigil.getTargetX() > getWidth() / 2;
+        if (mRtl) {
+            return mGigil.getTargetX() < getWidth() / 2;
+        }
+        else {
+            return mGigil.getTargetX() > getWidth() / 2;
+        }
+    }
+
+    public boolean isOpen() {
+        if (mRtl) {
+            return Math.abs(mGigil.getPosition()) < 16;
+        }
+        else {
+            return Math.abs(mGigil.getPosition() - getWidth()) < 16;
+        }
     }
 
     public void open() {
-        mGigil.setTargetX(getWidth() + mGigil.getDefaultBumpSize());
+        if (mRtl) {
+            mGigil.setTargetX(-mGigil.getDefaultBumpSize());
+        }
+        else {
+            mGigil.setTargetX(getWidth() + mGigil.getDefaultBumpSize());
+        }
+    }
+
+    public void openImmediately() {
+        mGigil.setDefaultIsOpen(true);
+
+        if (getWidth() > 0) {
+            if (mRtl) {
+                mGigil.setInstantX(-mGigil.getDefaultBumpSize());
+            }
+            else {
+                mGigil.setInstantX(getWidth() + mGigil.getDefaultBumpSize());
+            }
+        }
     }
 
     public void close() {
-        mGigil.setTargetX(mGigil.getDefaultBumpSize());
+        mGigil.setDefaultIsOpen(false);
+
+        if (mRtl) {
+            mGigil.setTargetX(getWidth() - mGigil.getDefaultBumpSize());
+        }
+        else {
+            mGigil.setTargetX(mGigil.getDefaultBumpSize());
+        }
     }
+
+    public void closeImmediately() {
+        if (mRtl) {
+            mGigil.setInstantX(getWidth() - mGigil.getDefaultBumpSize());
+        }
+        else {
+            mGigil.setInstantX(mGigil.getDefaultBumpSize());
+        }
+
+        mGigil.startFake();
+    }
+
+    private boolean mClickOnSwipe = false;
 
     private GestureDetector.OnGestureListener mOnGestureListener = new GestureDetector.OnGestureListener() {
 
         @Override
         public boolean onDown(MotionEvent e) {
-            float left = mGigil.getLeft();
-            float right = left + 2 * mGigil.getBump();
+            if (mRtl) {
+                float right = mGigil.getPosition();
+                float left = right - 2 * mGigil.getBump();
 
-            if (e.getX() > left && e.getX() < right) {
-                setGigilTarget(e.getX());
+                if (e.getX() > left && e.getX() < right) {
+                    setGigilTarget(e.getX());
 
-                mIsFlinging = false;
+                    mIsFlinging = false;
 
-                return true;
+                    return true;
+                }
+            }
+            else {
+                float left = mGigil.getPosition();
+                float right = left + 2 * mGigil.getBump();
+
+                if (e.getX() > left && e.getX() < right) {
+                    setGigilTarget(e.getX());
+
+                    mIsFlinging = false;
+
+                    return true;
+                }
+
+                if (mGigil.getPosition() == 0 && e.getX() > mGigil.getDefaultBumpSize() && e.getX() < mSwipe.getBounds().right && Math.abs(e.getY() - mSwipe.getBounds().centerY()) < mSwipe.getBounds().height()) {
+                    mClickOnSwipe = true;
+                    return true;
+                }
             }
 
             return false;
@@ -263,12 +363,29 @@ public class GigilView extends View implements GigilDrawable.OnGigilMovedListene
 
         @Override
         public boolean onSingleTapUp(MotionEvent e) {
-            if (mGigil.getLeft() < getWidth() / 2 && e.getX() < mGigil.getDefaultBumpSize() && e.getY() > getHeight() / 3 && e.getY() < 2 * getHeight() / 3) {
-                mIsFlinging = true;
-
+            if (mClickOnSwipe) {
                 open();
 
                 return true;
+            }
+
+            if (mRtl) {
+                if (mGigil.getPosition() > getWidth() / 2 && e.getX() > getWidth() - mGigil.getDefaultBumpSize() && e.getY() > getHeight() / 3 && e.getY() < 2 * getHeight() / 3) {
+                    mIsFlinging = true;
+
+                    open();
+
+                    return true;
+                }
+            }
+            else {
+                if (mGigil.getPosition() < getWidth() / 2 && e.getX() < mGigil.getDefaultBumpSize() && e.getY() > getHeight() / 3 && e.getY() < 2 * getHeight() / 3) {
+                    mIsFlinging = true;
+
+                    open();
+
+                    return true;
+                }
             }
 
             return false;
@@ -287,6 +404,10 @@ public class GigilView extends View implements GigilDrawable.OnGigilMovedListene
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
             mIsFlinging = true;
 
+            if (mRtl) {
+                velocityX = -velocityX;
+            }
+
             if (velocityX > 0) {
                 open();
             }
@@ -300,7 +421,12 @@ public class GigilView extends View implements GigilDrawable.OnGigilMovedListene
     };
 
     private void setGigilTarget(float x) {
-        mGigil.setTargetX(Math.max(mGigil.getDefaultBumpSize(), x));
+        if (mRtl) {
+            mGigil.setTargetX(Math.min(getWidth() - mGigil.getDefaultBumpSize(), x));
+        }
+        else {
+            mGigil.setTargetX(Math.max(mGigil.getDefaultBumpSize(), x));
+        }
     }
 
 }

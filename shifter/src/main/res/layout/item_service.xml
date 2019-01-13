@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/image_icon"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+
+        android:elevation="6dp"
+        android:background="@drawable/service_background"
+        android:scaleType="fitCenter"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_name"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+
+        android:textColor="#ffffff"
+        app:fontFamily="@font/iransansmobile"
+        android:gravity="center_horizontal"
+        android:maxLines="1"
+        android:singleLine="true"/>
+
+</merge>

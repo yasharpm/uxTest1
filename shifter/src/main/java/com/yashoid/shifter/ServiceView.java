@@ -14,7 +14,7 @@ import androidx.core.view.ViewCompat;
 
 public class ServiceView extends AppCompatImageView {
 
-    private static final float TEXT_SIZE_RATIO = 10f / 66f;
+    private static final float TEXT_SIZE_RATIO = 13f / 66f;
     private static final float TEXT_MARGIN = 8f / 66f;
     private static final float PADDING_RATIO = 11f / 66f;
 

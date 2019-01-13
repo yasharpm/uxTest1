@@ -1,6 +1,7 @@
 package com.yashoid.shifter;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +12,9 @@ import androidx.annotation.Nullable;
 
 public class SideMenu extends ViewGroup implements GigilDrawable.OnGigilMovedListener {
 
-    private int mGigilLeft = 0;
+    private boolean mRtl;
+
+    private int mGigilPosition = 0;
 
     public SideMenu(@NonNull Context context) {
         super(context);
@@ -29,12 +32,19 @@ public class SideMenu extends ViewGroup implements GigilDrawable.OnGigilMovedLis
     }
 
     private void initialize(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        LayoutInflater.from(context).inflate(R.layout.side_menu, this, true);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SideMenu, defStyleAttr, 0);
+
+        mRtl = a.getBoolean(R.styleable.SideMenu_rtl, false);
+        int layoutResId = a.getResourceId(R.styleable.SideMenu_layout, 0);
+
+        a.recycle();
+
+        LayoutInflater.from(context).inflate(layoutResId, this, true);
     }
 
     @Override
-    public void onGigilMoved(int left) {
-        mGigilLeft = left;
+    public void onGigilMoved(int position) {
+        mGigilPosition = position;
 
         requestLayout();
     }
@@ -45,11 +55,23 @@ public class SideMenu extends ViewGroup implements GigilDrawable.OnGigilMovedLis
             return;
         }
 
-        int childRight = mGigilLeft;
-
         View view = getChildAt(0);
 
-        view.layout(childRight - getWidth(), 0, childRight, getHeight());
+        view.measure(
+                MeasureSpec.makeMeasureSpec(getWidth(), MeasureSpec.EXACTLY),
+                MeasureSpec.makeMeasureSpec(getHeight(), MeasureSpec.EXACTLY)
+        );
+
+        if (mRtl) {
+            int childLeft = mGigilPosition;
+
+            view.layout(childLeft, 0, childLeft + getWidth(), getHeight());
+        }
+        else {
+            int childRight = mGigilPosition;
+
+            view.layout(childRight - getWidth(), 0, childRight, getHeight());
+        }
     }
 
 }

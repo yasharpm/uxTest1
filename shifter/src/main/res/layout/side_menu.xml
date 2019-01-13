@@ -1,8 +1,380 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
 
     android:background="#002b71">
+
+    <View
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="8"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+<ScrollView
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/toolbar"
+    app:layout_constraintBottom_toBottomOf="parent"
+    android:layout_marginTop="24dp"
+
+    android:scrollbars="none">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:clipChildren="false"
+        android:clipToPadding="true">
+
+        <com.yashoid.shifter.ServiceItem
+            android:id="@+id/s1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.1333"
+            app:layout_constraintDimensionRatio="0.6667"
+
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/s2"
+            app:layout_constraintTop_toTopOf="parent"
+
+            app:icon="@drawable/service_transfer"
+            app:name="کارت به کارت"/>
+
+        <com.yashoid.shifter.ServiceItem
+            android:id="@+id/s2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.1333"
+            app:layout_constraintDimensionRatio="0.6667"
+
+            app:layout_constraintLeft_toRightOf="@+id/s1"
+            app:layout_constraintRight_toLeftOf="@+id/s3"
+            app:layout_constraintTop_toTopOf="@+id/s1"
+
+            app:icon="@drawable/service_charity"
+            app:name="نیکوکاری"/>
+
+        <com.yashoid.shifter.ServiceItem
+            android:id="@+id/s3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.1333"
+            app:layout_constraintDimensionRatio="0.6667"
+
+            app:layout_constraintLeft_toRightOf="@+id/s2"
+            app:layout_constraintRight_toLeftOf="@+id/s4"
+            app:layout_constraintTop_toTopOf="@+id/s1"
+
+            app:icon="@drawable/service_bill"
+            app:name="قبض"/>
+
+        <com.yashoid.shifter.ServiceItem
+            android:id="@+id/s4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.1333"
+            app:layout_constraintDimensionRatio="0.6667"
+
+            app:layout_constraintLeft_toRightOf="@+id/s3"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/s1"
+
+            app:icon="@drawable/service_topup"
+            app:name="سیم کارت"/>
+
+        <View
+            android:id="@+id/m1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="15"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/s1"/>
+
+        <com.yashoid.shifter.ServiceItem
+            android:id="@+id/s5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.1333"
+            app:layout_constraintDimensionRatio="0.6667"
+
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/s6"
+            app:layout_constraintTop_toBottomOf="@+id/m1"/>
+
+        <com.yashoid.shifter.ServiceItem
+            android:id="@+id/s6"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.1333"
+            app:layout_constraintDimensionRatio="0.6667"
+
+            app:layout_constraintLeft_toRightOf="@+id/s5"
+            app:layout_constraintRight_toLeftOf="@+id/s7"
+            app:layout_constraintTop_toTopOf="@+id/s5"
+
+            app:icon="@drawable/service_insurance"
+            app:name="بیمه"/>
+
+        <com.yashoid.shifter.ServiceItem
+            android:id="@+id/s7"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.1333"
+            app:layout_constraintDimensionRatio="0.6667"
+
+            app:layout_constraintLeft_toRightOf="@+id/s6"
+            app:layout_constraintRight_toLeftOf="@+id/s8"
+            app:layout_constraintTop_toTopOf="@+id/s5"
+
+            app:icon="@drawable/service_internet"
+            app:name="بسته اینترنت"/>
+
+        <com.yashoid.shifter.ServiceItem
+            android:id="@+id/s8"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.1333"
+            app:layout_constraintDimensionRatio="0.6667"
+
+            app:layout_constraintLeft_toRightOf="@+id/s7"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/s5"
+
+            app:icon="@drawable/service_trip"
+            app:name="گردشگری"/>
+
+        <View
+            android:id="@+id/m2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="15"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/s5"/>
+
+        <com.yashoid.shifter.ServiceItem
+            android:id="@+id/s9"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.1333"
+            app:layout_constraintDimensionRatio="0.6667"
+
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/s10"
+            app:layout_constraintTop_toBottomOf="@+id/m2"/>
+
+        <com.yashoid.shifter.ServiceItem
+            android:id="@+id/s10"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.1333"
+            app:layout_constraintDimensionRatio="0.6667"
+
+            app:layout_constraintLeft_toRightOf="@+id/s9"
+            app:layout_constraintRight_toLeftOf="@+id/s11"
+            app:layout_constraintTop_toTopOf="@+id/s9"/>
+
+        <com.yashoid.shifter.ServiceItem
+            android:id="@+id/s11"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.1333"
+            app:layout_constraintDimensionRatio="0.6667"
+
+            app:layout_constraintLeft_toRightOf="@+id/s10"
+            app:layout_constraintRight_toLeftOf="@+id/s12"
+            app:layout_constraintTop_toTopOf="@+id/s9"/>
+
+        <com.yashoid.shifter.ServiceItem
+            android:id="@+id/s12"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.1333"
+            app:layout_constraintDimensionRatio="0.6667"
+
+            app:layout_constraintLeft_toRightOf="@+id/s11"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/s9"/>
+
+        <View
+            android:id="@+id/m3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="15"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/s9"/>
+
+        <com.yashoid.shifter.ServiceItem
+            android:id="@+id/s13"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.1333"
+            app:layout_constraintDimensionRatio="0.6667"
+
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/s14"
+            app:layout_constraintTop_toBottomOf="@+id/m3"/>
+
+        <com.yashoid.shifter.ServiceItem
+            android:id="@+id/s14"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.1333"
+            app:layout_constraintDimensionRatio="0.6667"
+
+            app:layout_constraintLeft_toRightOf="@+id/s13"
+            app:layout_constraintRight_toLeftOf="@+id/s15"
+            app:layout_constraintTop_toTopOf="@+id/s13"/>
+
+        <com.yashoid.shifter.ServiceItem
+            android:id="@+id/s15"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.1333"
+            app:layout_constraintDimensionRatio="0.6667"
+
+            app:layout_constraintLeft_toRightOf="@+id/s14"
+            app:layout_constraintRight_toLeftOf="@+id/s16"
+            app:layout_constraintTop_toTopOf="@+id/s13"/>
+
+        <com.yashoid.shifter.ServiceItem
+            android:id="@+id/s16"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.1333"
+            app:layout_constraintDimensionRatio="0.6667"
+
+            app:layout_constraintLeft_toRightOf="@+id/s15"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/s13"/>
+
+        <View
+            android:id="@+id/m4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="15"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/s13"/>
+
+        <com.yashoid.shifter.ServiceItem
+            android:id="@+id/s17"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.1333"
+            app:layout_constraintDimensionRatio="0.6667"
+
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/s18"
+            app:layout_constraintTop_toBottomOf="@+id/m4"/>
+
+        <com.yashoid.shifter.ServiceItem
+            android:id="@+id/s18"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.1333"
+            app:layout_constraintDimensionRatio="0.6667"
+
+            app:layout_constraintLeft_toRightOf="@+id/s17"
+            app:layout_constraintRight_toLeftOf="@+id/s19"
+            app:layout_constraintTop_toTopOf="@+id/s17"/>
+
+        <com.yashoid.shifter.ServiceItem
+            android:id="@+id/s19"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.1333"
+            app:layout_constraintDimensionRatio="0.6667"
+
+            app:layout_constraintLeft_toRightOf="@+id/s18"
+            app:layout_constraintRight_toLeftOf="@+id/s20"
+            app:layout_constraintTop_toTopOf="@+id/s17"/>
+
+        <com.yashoid.shifter.ServiceItem
+            android:id="@+id/s20"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.1333"
+            app:layout_constraintDimensionRatio="0.6667"
+
+            app:layout_constraintLeft_toRightOf="@+id/s19"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/s17"/>
+
+        <View
+            android:id="@+id/m5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="15"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/s17"/>
+
+        <com.yashoid.shifter.ServiceItem
+            android:id="@+id/s21"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.1333"
+            app:layout_constraintDimensionRatio="0.6667"
+
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/s22"
+            app:layout_constraintTop_toBottomOf="@+id/m5"/>
+
+        <com.yashoid.shifter.ServiceItem
+            android:id="@+id/s22"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.1333"
+            app:layout_constraintDimensionRatio="0.6667"
+
+            app:layout_constraintLeft_toRightOf="@+id/s21"
+            app:layout_constraintRight_toLeftOf="@+id/s23"
+            app:layout_constraintTop_toTopOf="@+id/s21"/>
+
+        <com.yashoid.shifter.ServiceItem
+            android:id="@+id/s23"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.1333"
+            app:layout_constraintDimensionRatio="0.6667"
+
+            app:layout_constraintLeft_toRightOf="@+id/s22"
+            app:layout_constraintRight_toLeftOf="@+id/s24"
+            app:layout_constraintTop_toTopOf="@+id/s21"/>
+
+        <com.yashoid.shifter.ServiceItem
+            android:id="@+id/s24"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.1333"
+            app:layout_constraintDimensionRatio="0.6667"
+
+            app:layout_constraintLeft_toRightOf="@+id/s23"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/s21"/>
+
+        <View
+            android:id="@+id/footer"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="4.286"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/s21"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

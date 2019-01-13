@@ -12,4 +12,20 @@
         <attr name="isRed" format="boolean"/>
     </declare-styleable>
 
+    <declare-styleable name="GigilView">
+        <attr name="rtl" format="boolean"/>
+        <attr name="color"/>
+        <attr name="icon" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="SideMenu">
+        <attr name="layout" format="reference"/>
+        <attr name="rtl"/>
+    </declare-styleable>
+
+    <declare-styleable name="ServiceItem">
+        <attr name="icon"/>
+        <attr name="name"/>
+    </declare-styleable>
+
 </resources>

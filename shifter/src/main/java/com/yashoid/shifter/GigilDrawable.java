@@ -1,5 +1,7 @@
 package com.yashoid.shifter;
 
+import android.animation.Animator;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
@@ -9,12 +11,16 @@ import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
 public class GigilDrawable extends Drawable {
+
+    private static final long FAKE_DURATION = 200;
 
     private static final float BUMP_RATIO = 24f / 360f;
 
@@ -25,13 +31,17 @@ public class GigilDrawable extends Drawable {
 
     public interface OnGigilMovedListener {
 
-        void onGigilMoved(int left);
+        void onGigilMoved(int position);
 
     }
 
     private OnGigilMovedListener mListener = null;
 
     private Handler mHandler;
+
+    private boolean mRtl;
+
+    private boolean mDefaultIsOpen = false;
 
     private Spring mSpring = new Spring();
 
@@ -45,30 +55,39 @@ public class GigilDrawable extends Drawable {
 
     private float mMaximumSpeed;
 
-    private int mLeft;
+    private int mPosition;
     private float mTargetX;
 
     private float mDestinationX;
 
     private long mTimeTracker = -1;
 
-    public GigilDrawable(Context context) {
+    private boolean mFaking = false;
+    private float mFakeProgress = 0;
+
+    public GigilDrawable(Context context, boolean rtl, int color, int iconResId) {
         mHandler = new Handler();
+
+        mRtl = rtl;
 
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
-        mPaint.setColor(0xff002b71);
+        mPaint.setColor(color);
         mPaint.setStyle(Paint.Style.FILL);
 
-        mGigilIcon = ContextCompat.getDrawable(context, R.drawable.ic_gigil);
+        mGigilIcon = ContextCompat.getDrawable(context, iconResId);
+    }
+
+    public void setDefaultIsOpen(boolean isOpen) {
+        mDefaultIsOpen = isOpen;
     }
 
     public void setOnGigilMovedListener(OnGigilMovedListener listener) {
         mListener = listener;
     }
 
-    public int getLeft() {
-        return mLeft;
+    public int getPosition() {
+        return mPosition;
     }
 
     public float getBump() {
@@ -91,15 +110,32 @@ public class GigilDrawable extends Drawable {
 
         mBump = height * BUMP_RATIO;
 
-        int gigilIconSize = (int) (mBump * GIGIL_ICON_SIZE_RATIO);
-        mGigilIcon.setBounds(0, 0, gigilIconSize, gigilIconSize);
+        int gigilIconWidth = (int) (mBump * GIGIL_ICON_SIZE_RATIO);
+        int gigilIconHeight = gigilIconWidth * mGigilIcon.getIntrinsicHeight() / mGigilIcon.getIntrinsicWidth();
+        mGigilIcon.setBounds(0, 0, gigilIconWidth, gigilIconHeight);
 
-        mTargetX = mBump;
+        if (mRtl) {
+            if (mDefaultIsOpen) {
+                mTargetX = -mBump;
+            }
+            else {
+                mTargetX = bounds.right - mBump;
+            }
+        }
+        else {
+            if (mDefaultIsOpen) {
+                mTargetX = bounds.right + mBump;
+            }
+            else {
+                mTargetX = mBump;
+            }
+        }
 
         mSpring.setMinimumSize(0);
         mSpring.setMaximumSize(mBump * 6);
         mSpring.setDefaultSize(mBump);
         mSpring.setSize(mBump);
+
         mSpring.setMaximumSpeed(bounds.width() * MAXIMUM_SPRING_SPEED);
 
         mMaximumSpeed = bounds.width() * MAXIMUM_SPEED;
@@ -113,7 +149,80 @@ public class GigilDrawable extends Drawable {
         invalidateSelf();
     }
 
+    public void setInstantX(float targetX) {
+        mDestinationX = targetX;
+        mTargetX = targetX;
+        mSpring.setSize(mBump);
+
+        measureCurve(false);
+
+        invalidateSelf();
+
+        if (mListener != null) {
+            mListener.onGigilMoved(mPosition);
+        }
+    }
+
+    private ValueAnimator mFakeAnimator = null;
+
+    public void startFake() {
+        if (mFakeAnimator != null) {
+            mFakeAnimator.cancel();
+        }
+
+        mFaking = true;
+        mFakeProgress = 0;
+
+        mFakeAnimator = new ValueAnimator();
+        mFakeAnimator.setDuration(FAKE_DURATION);
+        mFakeAnimator.setFloatValues(0, 1);
+        mFakeAnimator.setInterpolator(new DecelerateInterpolator());
+
+        mFakeAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                mFakeProgress = (float) animation.getAnimatedValue();
+
+                measureCurve();
+                invalidateSelf();
+            }
+        });
+
+        mFakeAnimator.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) { }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                mFaking = false;
+                mFakeAnimator = null;
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) { }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) { }
+
+        });
+
+        mFakeAnimator.start();
+    }
+
     private void measureCurve() {
+        measureCurve(true);
+    }
+
+    private void measureCurve(boolean shouldNotify) {
+        if (mRtl) {
+            measureCurveRtl(shouldNotify);
+        }
+        else {
+            measureCurveLtr(shouldNotify);
+        }
+    }
+
+    private void measureCurveLtr(boolean shouldNotify) {
         final Rect bounds = getBounds();
 
         mPath.reset();
@@ -121,22 +230,72 @@ public class GigilDrawable extends Drawable {
         float bump = mTargetX - bounds.left;
         int left = (int) (bump - mSpring.getSize());
 
-        mLeft = left;
+        float right = bump;
 
-        notifyOnGigilMoved();
+        if (mFaking) {
+            right = left + mSpring.getSize() * mFakeProgress;
+        }
 
-        mPath.moveTo(left, bounds.top);
+        mPosition = left;
+
+        if (shouldNotify) {
+            notifyOnGigilMoved();
+        }
+
+        mPath.moveTo(left - 5, bounds.top);
+
+        mPath.lineTo(left, bounds.top);
 
         mPath.cubicTo(
                 left, bounds.centerY(),
-                bump, bounds.centerY() - mBump,
-                bump, bounds.centerY());
+                right, bounds.centerY() - mBump,
+                right, bounds.centerY());
 
         mPath.cubicTo(
-                bump, bounds.centerY() + mBump,
+                right, bounds.centerY() + mBump,
                 left, bounds.centerY(),
                 left, bounds.bottom
         );
+
+        mPath.lineTo(left - 5, bounds.bottom);
+
+        mPath.close();
+    }
+
+    private void measureCurveRtl(boolean shouldNotify) {
+        final Rect bounds = getBounds();
+
+        mPath.reset();
+
+        float left = mTargetX;
+        int right = (int) (left + mSpring.getSize());
+
+        if (mFaking) {
+            left = right - mFakeProgress * mSpring.getSize();
+        }
+
+        mPosition = right;
+
+        if (shouldNotify) {
+            notifyOnGigilMoved();
+        }
+
+        mPath.moveTo(right + 5, bounds.top);
+
+        mPath.lineTo(right, bounds.top);
+
+        mPath.cubicTo(
+                right, bounds.centerY(),
+                left, bounds.centerY() - mBump,
+                left, bounds.centerY());
+
+        mPath.cubicTo(
+                left, bounds.centerY() + mBump,
+                right, bounds.centerY(),
+                right, bounds.bottom
+        );
+
+        mPath.lineTo(right + 5, bounds.bottom);
 
         mPath.close();
     }
@@ -151,7 +310,7 @@ public class GigilDrawable extends Drawable {
 
         @Override
         public void run() {
-            mListener.onGigilMoved(mLeft);
+            mListener.onGigilMoved(mPosition);
         }
 
     };
@@ -160,14 +319,23 @@ public class GigilDrawable extends Drawable {
     public void draw(@NonNull Canvas canvas) {
         final Rect bounds = getBounds();
 
-//        canvas.drawRect(bounds.left, bounds.top, mLeft, bounds.bottom, mPaint);
+//        canvas.drawRect(bounds.left, bounds.top, mPosition, bounds.bottom, mPaint);
 
         canvas.drawPath(mPath, mPaint);
 
         canvas.save();
-        int gigilIconSize = mGigilIcon.getBounds().width();
-        float gigilIconRight = mLeft + mSpring.getSize() - (mBump - gigilIconSize) / 2;
-        canvas.translate(gigilIconRight - gigilIconSize, bounds.centerY() - gigilIconSize / 2);
+        int gigilIconWidth = mGigilIcon.getBounds().width();
+        int gigilIconHeight = mGigilIcon.getBounds().height();
+
+        if (mRtl) {
+            float gigilIconLeft = mPosition - mSpring.getSize() + (mBump - gigilIconWidth) / 2;
+            canvas.translate(gigilIconLeft, bounds.centerY() - gigilIconHeight / 2);
+        }
+        else {
+            float gigilIconRight = mPosition + mSpring.getSize() - (mBump - gigilIconWidth) / 2;
+            canvas.translate(gigilIconRight - gigilIconWidth, bounds.centerY() - gigilIconHeight / 2);
+        }
+
         mGigilIcon.draw(canvas);
 
         canvas.restore();
@@ -200,7 +368,12 @@ public class GigilDrawable extends Drawable {
 
             mTargetX += targetMovement;
 
-            mSpring.setSize(mSpring.getSize() + targetMovement);
+            if (mRtl) {
+                mSpring.setSize(mSpring.getSize() - targetMovement);
+            }
+            else {
+                mSpring.setSize(mSpring.getSize() + targetMovement);
+            }
 
             curveInvalidated = true;
         }

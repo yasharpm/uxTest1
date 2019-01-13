@@ -20,170 +20,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <ImageView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintWidth_percent="0.622"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.215"
-
-        android:src="@drawable/points"/>
-
-    <ImageView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintWidth_percent="0.1944"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.075"
-        app:layout_constraintVertical_bias="0.852"
-
-        android:src="@drawable/wallet"/>
-
-    <com.yashoid.shifter.CircleMenu
-        android:id="@+id/outercircle"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header"
-        app:layout_constraintBottom_toBottomOf="@+id/guide">
-
-        <com.yashoid.shifter.ServiceView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:name="خودرو"
-            app:color="#011e2e"
-            app:srcCompat="@drawable/service_car"/>
-
-        <com.yashoid.shifter.ServiceView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:name="بسته اینترنت"
-            app:color="#011e2e"
-            app:srcCompat="@drawable/service_internet"/>
-
-        <com.yashoid.shifter.ServiceView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:name="کارت به کارت"
-            app:color="#011e2e"
-            app:srcCompat="@drawable/service_transfer"/>
-
-        <com.yashoid.shifter.ServiceView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:name="نیکوکاری"
-            app:color="#011e2e"
-            app:srcCompat="@drawable/service_charity"/>
-
-        <com.yashoid.shifter.ServiceView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:name="قبض"
-            app:color="#011e2e"
-            app:srcCompat="@drawable/service_bill"/>
-
-        <com.yashoid.shifter.ServiceView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:name="سیم‌کارت"
-            app:color="#011e2e"
-            app:srcCompat="@drawable/service_topup"/>
-
-    </com.yashoid.shifter.CircleMenu>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header"
-        app:layout_constraintBottom_toBottomOf="@+id/guide">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintWidth_percent="0.2"
-            app:layout_constraintDimensionRatio="0.5"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintHorizontal_bias="1">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintWidth_percent="2"
-                app:layout_constraintDimensionRatio="1"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-
-                android:background="@drawable/service_background"
-                android:elevation="6dp">
-
-                <com.yashoid.shifter.Toggle
-                    android:id="@+id/toggle"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    app:layout_constraintWidth_percent="0.5"
-                    app:layout_constraintDimensionRatio="1"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <com.yashoid.shifter.CircleMenu
-        android:id="@+id/innercircle"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header"
-        app:layout_constraintBottom_toBottomOf="@+id/guide"
-
-        app:radiusRatio="0.2"
-        app:drawCircle="false">
-
-        <com.yashoid.shifter.ServiceView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:name="خدمات"
-            app:color="#e8165d"
-            app:isRed="true"
-            app:srcCompat="@drawable/services"/>
-
-        <com.yashoid.shifter.ServiceView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:name="گردشگری"
-            app:color="#e8165d"
-            app:isRed="true"
-            app:srcCompat="@drawable/service_trip"/>
-
-        <com.yashoid.shifter.ServiceView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:name="بیمه"
-            app:color="#e8165d"
-            app:isRed="true"
-            app:srcCompat="@drawable/service_insurance"/>
-
-    </com.yashoid.shifter.CircleMenu>
-
     <com.yashoid.shifter.SideMenu
         android:id="@+id/side_menu"
         android:layout_width="0dp"
@@ -191,7 +27,24 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:rtl="false"
+        app:layout="@layout/side_menu"/>
+
+    <com.yashoid.shifter.SideMenu
+        android:id="@+id/side_main"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:rtl="true"
+        app:layout="@layout/side_main">
+
+    </com.yashoid.shifter.SideMenu>
 
     <com.yashoid.shifter.GigilView
         android:id="@+id/gigil"
@@ -201,6 +54,18 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header"
         app:layout_constraintBottom_toBottomOf="@+id/guide"/>
+
+    <com.yashoid.shifter.GigilView
+        android:id="@+id/gigil_back"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header"
+        app:layout_constraintBottom_toBottomOf="@+id/guide"
+        app:color="#f1f1f1"
+        app:rtl="true"
+        app:icon="@drawable/ic_gigil_back"/>
 
     <View
         android:id="@+id/marginer"
